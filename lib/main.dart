@@ -8,14 +8,12 @@ void main() {
 }
 
 class Chatapp extends StatelessWidget {
-  const Chatapp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Chat App",
       theme: ThemeData(primarySwatch: Colors.yellow),
-      home: ChatPage(),
+      home: const ChatPage(),
       );
   }
 }
