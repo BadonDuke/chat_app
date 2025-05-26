@@ -1,11 +1,16 @@
 import "package:flutter/material.dart";
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+ LoginPage({super.key});
 
   void loginUser(){
+    print(userNameController.text);
+    print(passwordController.text);
     print('login success');
   }
+
+final userNameController = TextEditingController();
+final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +39,28 @@ class LoginPage extends StatelessWidget {
                 ),
                 Image.network('https://3009709.youcanlearnit.net/Alien_LIL_131338.png', height: 200,),
         
+                TextField(
+                  controller: userNameController,
+                  decoration: InputDecoration(
+                    hintText: 'add your username',
+                    hintStyle: TextStyle(color: Colors.blueGrey),
+                    border: OutlineInputBorder()
+                  ),
+                ),
+
+                TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'type your password',
+                    hintStyle: TextStyle(color: Colors.blueGrey),
+                    border: OutlineInputBorder()
+                  ),
+                ),
+
                 ElevatedButton(onPressed: loginUser,
-                 child: Text('click me', style:TextStyle(fontSize: 30,fontWeight: FontWeight.w300) ,)),
-                InkWell(
-                  splashColor: Colors.red,
-                  onDoubleTap: () {
-                  print('double tappled');  
-                  },
-                  onLongPress: () {
-                    print('long pressed');
-                  },
+                 child: Text('login', style:TextStyle(fontSize: 24,fontWeight: FontWeight.w300) ,)),
+                GestureDetector(
                   onTap: (){
                     print('link clicked');
                   },
