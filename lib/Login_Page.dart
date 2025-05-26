@@ -36,10 +36,24 @@ class LoginPage extends StatelessWidget {
         
                 ElevatedButton(onPressed: loginUser,
                  child: Text('click me', style:TextStyle(fontSize: 30,fontWeight: FontWeight.w300) ,)),
-  
-                TextButton(onPressed: (){
-                  print('pressed on the url');
-                }, child: Text('https://duellinksmeta.com'))
+                InkWell(
+                  splashColor: Colors.red,
+                  onDoubleTap: () {
+                  print('double tappled');  
+                  },
+                  onLongPress: () {
+                    print('long pressed');
+                  },
+                  onTap: (){
+                    print('link clicked');
+                  },
+                  child: Column(
+                    children: [
+                      Text('find us on'),
+                      Text('https://duellinksmeta.com'),
+                    ],
+                  ),
+                )
             ],
           ),
         ),
