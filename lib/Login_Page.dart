@@ -1,4 +1,5 @@
 import "package:chat_app/Chat_Page.dart";
+import "package:chat_app/utils/spaces.dart";
 import "package:chat_app/utils/textfield_styles.dart";
 import "package:chat_app/widgets/login_text_field.dart";
 import "package:flutter/material.dart";
@@ -64,10 +65,8 @@ final passwordController = TextEditingController();
                         },
                         controller: userNameController,
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                     
+                      verticalSpacing(24),
+
                       LoginTextField(
                         hasAsterisks: true,
                         controller: passwordController, 
@@ -76,9 +75,7 @@ final passwordController = TextEditingController();
                     ],
                   ),
                 ),
-                    SizedBox(
-                        height: 24,
-                      ),
+                   verticalSpacing(24),
                 ElevatedButton(onPressed: (){
                   loginUser(context);
                 },
