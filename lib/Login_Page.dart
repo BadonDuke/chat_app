@@ -47,7 +47,7 @@ final passwordController = TextEditingController();
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.blueGrey),
                 ),
-                Image.network('https://3009709.youcanlearnit.net/Alien_LIL_131338.png', height: 200,),
+                Image.asset('assets/illustration.jpg', height: 200,),
         
                 Form(
                   key: _formkey,
