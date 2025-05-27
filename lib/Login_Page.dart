@@ -3,6 +3,7 @@ import "package:chat_app/utils/spaces.dart";
 import "package:chat_app/utils/textfield_styles.dart";
 import "package:chat_app/widgets/login_text_field.dart";
 import "package:flutter/material.dart";
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
  LoginPage({super.key});
@@ -21,6 +22,7 @@ final _formkey = GlobalKey<FormState>();
 
 final userNameController = TextEditingController();
 final passwordController = TextEditingController();
+final _mainUrl = 'https://www.masterduelmeta.com/';
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +83,16 @@ final passwordController = TextEditingController();
                 },
                  child: Text('login', style:TextStyle(fontSize: 24,fontWeight: FontWeight.w300) ,)),
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
                     print('link clicked');
+                    if(!await launch(_mainUrl)){
+                      throw 'Could not launch this';
+                    }
                   },
                   child: Column(
                     children: [
                       Text('find us on'),
-                      Text('https://duellinksmeta.com'),
+                      Text(_mainUrl),
                     ],
                   ),
                 )
