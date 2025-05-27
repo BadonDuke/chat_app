@@ -1,4 +1,6 @@
 import "package:chat_app/Chat_Page.dart";
+import "package:chat_app/utils/textfield_styles.dart";
+import "package:chat_app/widgets/login_text_field.dart";
 import "package:flutter/material.dart";
 
 class LoginPage extends StatelessWidget {
@@ -50,33 +52,26 @@ final passwordController = TextEditingController();
                   key: _formkey,
                   child: Column(
                     children: [
-                      TextFormField(
+                      LoginTextField(
+                        hintText: "Enter your username",
                         validator: (value){
                           if(value!=null && value.isNotEmpty && value.length < 5){
                             return "your username should be more than 5 characters";
                           } else if(value!=null && value.isEmpty){
                             return "pls type username";
                           }
+                          return null;
                         },
                         controller: userNameController,
-                        decoration: InputDecoration(
-                          hintText: 'add your username',
-                          hintStyle: TextStyle(color: Colors.blueGrey),
-                          border: OutlineInputBorder()
-                        ),
                       ),
                       SizedBox(
                         height: 24,
                       ),
                      
-                      TextFormField(
-                        controller: passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'type your password',
-                          hintStyle: TextStyle(color: Colors.blueGrey),
-                          border: OutlineInputBorder()
-                        ),
+                      LoginTextField(
+                        hasAsterisks: true,
+                        controller: passwordController, 
+                        hintText: 'Enter your password',
                       ),
                     ],
                   ),
