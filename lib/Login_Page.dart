@@ -9,7 +9,7 @@ final _formkey = GlobalKey<FormState>();
     if(_formkey.currentState!=null && _formkey.currentState!.validate()){
     print(userNameController.text);
     print(passwordController.text);
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatPage(username: userNameController.text,)));
+    Navigator.pushNamed(context,'/chat', arguments: '${userNameController.text}');
     print('login success');
     } else{
       print('not successfull');
