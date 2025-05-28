@@ -27,6 +27,12 @@ _loadInitialMessages() async {
     _messages = _chatMessages;
   });
 }
+
+onMessageSent(ChatMessageEntity entity) {
+    _messages.add(entity);
+    setState(() {});
+  }
+
 @override
   void initState() {
     _loadInitialMessages();
@@ -65,7 +71,7 @@ _loadInitialMessages() async {
             //   // ],
             // ),
           ),
-           ChatInput(),
+           ChatInput(onSubmit: onMessageSent,),
         ],
       ),
     );
