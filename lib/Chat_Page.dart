@@ -1,16 +1,37 @@
+import "dart:convert";
+
 import "package:chat_app/models/chat_message_enity.dart";
 import "package:chat_app/widgets/chat_bubble.dart";
 import "package:chat_app/widgets/chat_input.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
  ChatPage({super.key});
 
-List<ChatMessageEntity> _messages = [
-  ChatMessageEntity(text: 'first text', id: '1', createdAt: 21212121, author: Author(userName: 'dukebadon')),
-  ChatMessageEntity(text: 'second text', id: '1', createdAt: 21212121, author: Author(userName: 'dukebadon'), imageUrl: 'https://3009709.youcanlearnit.net/Alien_LIL_131338.png'),
-  ChatMessageEntity(text: 'third text', id: '1', createdAt: 21212121, author: Author(userName: 'Jinxie'))
-];
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+List<ChatMessageEntity> _messages = [];
+
+_loadInitialMessages() async {
+  final response = await rootBundle.loadString('assets/mock_messages.json');
+  final List<dynamic>decodedList = jsonDecode(response) as List;
+  final List<ChatMessageEntity> _chatMessages = decodedList.map((listItem){
+    return ChatMessageEntity.fromJson(listItem);
+  }).toList();
+  print(response);
+  setState(() {
+    _messages = _chatMessages;
+  });
+}
+@override
+  void initState() {
+    _loadInitialMessages();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final username = ModalRoute.of(context)!.settings.arguments as  String;
