@@ -55,7 +55,7 @@ _loadInitialMessages() async {
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index){
-              return ChatBubble(alignment: _messages[index].author.userName == 'dukebadon' ? Alignment.centerRight : Alignment.centerLeft,
+              return ChatBubble(alignment: _messages[index].author.userName == 'Dukieboi' ? Alignment.centerRight : Alignment.centerLeft,
               entity: _messages[index]);
             }),
             // child: ListView(
