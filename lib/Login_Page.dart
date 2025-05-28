@@ -3,6 +3,7 @@ import "package:chat_app/utils/spaces.dart";
 import "package:chat_app/utils/textfield_styles.dart";
 import "package:chat_app/widgets/login_text_field.dart";
 import "package:flutter/material.dart";
+import "package:social_media_buttons/social_media_button.dart";
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
@@ -95,6 +96,13 @@ final _mainUrl = 'https://www.masterduelmeta.com/';
                       Text(_mainUrl),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SocialMediaButton.twitter(size: 20,color: Colors.blue, url:"https://x.com/YGOMasterDuel"),
+                    SocialMediaButton.linkedin(url: "https://tinyurl.com/andree-ygo")
+                  ],
                 )
             ],
           ),
