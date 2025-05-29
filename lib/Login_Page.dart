@@ -57,7 +57,7 @@ final _mainUrl = 'https://www.masterduelmeta.com/';
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.fitWidth,
-                          image: AssetImage('assets/illustration.png')),
+                          image: AssetImage('assets/illustration.jpg')),
                       borderRadius: BorderRadius.circular(56)),
                 ),
                 verticalSpacing(24),
