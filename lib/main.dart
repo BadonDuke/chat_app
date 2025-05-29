@@ -22,7 +22,17 @@ class ChatApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: Colors.transparent,
         primarySwatch: Colors.purple, appBarTheme: AppBarTheme(backgroundColor: Colors.blue, foregroundColor: Colors.black)),
-      home: LoginPage(),
+        home: FutureBuilder<bool>(
+          future: context.read<AuthService>().isLoggedIn(),
+          builder: (context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData && snapshot.data!) {
+                return ChatPage();
+              } else
+                return LoginPage();
+            }
+            return CircularProgressIndicator();
+          }),
       routes: {
         '/chat': (context) => ChatPage()
       },
