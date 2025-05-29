@@ -5,15 +5,18 @@ import "package:chat_app/widgets/login_text_field.dart";
 import "package:flutter/material.dart";
 import "package:social_media_buttons/social_media_button.dart";
 import 'package:url_launcher/url_launcher.dart';
+import 'package:chat_app/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
  LoginPage({super.key});
 
 final _formkey = GlobalKey<FormState>();
-  void loginUser(context){
+   Future<void> loginUser(BuildContext context) async{
     if(_formkey.currentState!=null && _formkey.currentState!.validate()){
     print(userNameController.text);
     print(passwordController.text);
+     await context.read<AuthService>().loginUser(userNameController.text);
     Navigator.pushReplacementNamed(context,'/chat', arguments: '${userNameController.text}');
     print('login success');
     } else{
@@ -88,8 +91,8 @@ final _mainUrl = 'https://www.masterduelmeta.com/';
                   ),
                 ),
                    verticalSpacing(24),
-                ElevatedButton(onPressed: (){
-                  loginUser(context);
+                ElevatedButton(onPressed: ()async{
+                 await loginUser(context);
                 },
                  child: Text('login', style:TextStyle(fontSize: 24,fontWeight: FontWeight.w300) ,)),
                 GestureDetector(

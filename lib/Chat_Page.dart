@@ -62,6 +62,7 @@ onMessageSent(ChatMessageEntity entity) {
         actions: [
           IconButton(
               onPressed: () {
+                context.read<AuthService>().logoutUser();
                 Navigator.pushReplacementNamed(context, '/');
                 print('icon pressed');
               },
