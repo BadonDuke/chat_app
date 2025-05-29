@@ -28,7 +28,7 @@ final _mainUrl = 'https://www.masterduelmeta.com/';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -50,8 +50,17 @@ final _mainUrl = 'https://www.masterduelmeta.com/';
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.blueGrey),
                 ),
-                Image.asset('assets/illustration.jpg', height: 200,),
-        
+                verticalSpacing(24),
+                Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fitWidth,
+                          image: AssetImage('assets/illustration.png')),
+                      borderRadius: BorderRadius.circular(56)),
+                ),
+                verticalSpacing(24),
                 Form(
                   key: _formkey,
                   child: Column(
