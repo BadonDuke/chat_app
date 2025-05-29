@@ -5,8 +5,10 @@ import 'Chat_Page.dart';
 import 'Login_Page.dart';
 import 'package:chat_app/services/auth_service.dart';
 
-void main() {
-runApp(Provider(
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AuthService.init();
+runApp(ChangeNotifierProvider(
     create: (BuildContext context) => AuthService(),
     child: ChatApp(),
   ));
