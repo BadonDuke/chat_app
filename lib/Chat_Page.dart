@@ -1,10 +1,12 @@
 import "dart:convert";
-
+import 'package:http/http.dart' as http;
 import "package:chat_app/models/chat_message_enity.dart";
 import "package:chat_app/widgets/chat_bubble.dart";
 import "package:chat_app/widgets/chat_input.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+
+import "models/image_model.dart";
 
 class ChatPage extends StatefulWidget {
  ChatPage({super.key});
@@ -37,13 +39,30 @@ onMessageSent(ChatMessageEntity entity) {
     setState(() {});
   }
 
+ _getNetworkImages() async {
+    var endpointUrl = Uri.parse('https://picsum.photos/v2/list');
+
+    final response = await http.get(endpointUrl);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> decodeList = jsonDecode(response.body) as List;
+
+      final List<PixelfordImage> _imageList = decodeList.map((listItem) {
+        return PixelfordImage.fromJson(listItem);
+      }).toList();
+      print(_imageList[0].urlFullSize);
+    }
+  }
+  
 @override
   void initState() {
     _loadInitialMessages();
+    _getNetworkImages();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    _getNetworkImages();
     final username = ModalRoute.of(context)!.settings.arguments as  String;
     return Scaffold(
       appBar: AppBar(
