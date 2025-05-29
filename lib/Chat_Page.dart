@@ -8,6 +8,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import 'package:chat_app/services/auth_service.dart';
 import "models/image_model.dart";
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatefulWidget {
  ChatPage({super.key});
@@ -74,7 +75,7 @@ onMessageSent(ChatMessageEntity entity) {
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index){
-              return ChatBubble(alignment: _messages[index].author.userName == AuthService().getUserName() ? Alignment.centerRight : Alignment.centerLeft,
+              return ChatBubble(alignment: _messages[index].author.userName == context.read<AuthService>().getUserName() ? Alignment.centerRight : Alignment.centerLeft,
               entity: _messages[index]);
             }),
             // child: ListView(
